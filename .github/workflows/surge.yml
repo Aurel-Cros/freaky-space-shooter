@@ -12,7 +12,12 @@ jobs:
 
       - name: Install Surge
         run: npm install --global surge
-
+        
+      - name: Install & build
+        run: |
+          npm install
+          npm run build
+          
       - name: Deploy to Surge
         run: surge --project ./dist --domain ${{ vars.SURGE_DOMAIN }}
         env:
