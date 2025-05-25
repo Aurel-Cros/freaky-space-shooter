@@ -21,7 +21,8 @@ export class ControllerManager {
             up: false,
             down: false,
             fire: false,
-            pause: false
+            pause: false,
+            turbo: false
         };
 
         if (!this.gamepad) return input;
@@ -51,6 +52,11 @@ export class ControllerManager {
             input.up = input.up || this.gamepad.buttons[12]?.pressed;
             input.down = input.down || this.gamepad.buttons[13]?.pressed;
 
+            // Turbo mode (B, L1, L2)
+            input.turbo = this.gamepad.buttons[1]?.pressed || // B
+                this.gamepad.buttons[4]?.pressed || // LB
+                this.gamepad.buttons[6]?.pressed;   // LT
+
             // Fire button (A, X, RT, RB)
             input.fire = this.gamepad.buttons[0]?.pressed || // A
                 this.gamepad.buttons[2]?.pressed || // X
@@ -72,4 +78,5 @@ export interface ControllerInput {
     down: boolean;
     fire: boolean;
     pause: boolean;
+    turbo: boolean;
 }

@@ -23,6 +23,7 @@ export class Boss {
     // Respawn system
     lives: number = 5; // Total lives (respawns up to 5 times)
     currentLife: number = 1;
+    powerUpsToSpawn: number = 2;
 
     // Burst firing system
     burstMode: boolean = false;
@@ -196,7 +197,7 @@ export class Boss {
         const centerY = this.engine.canvas.height / 2;
         const powerupTypes: PowerUpType[] = ['health', 'shield', 'rapid_fire', 'triple_shot', 'speed_boost', 'damage_boost', 'piercing_shot', 'homing_missiles'];
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < this.powerUpsToSpawn; i++) {
             const randomType = powerupTypes[Math.floor(Math.random() * powerupTypes.length)];
             const angle = (i / 3) * Math.PI * 2;
             const distance = 60;

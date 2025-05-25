@@ -61,19 +61,25 @@ export class Player {
 
         let moved = false;
         const effectiveSpeed = this.speed * this.speedMultiplier;
-
+        let turbo = 1;
         // Keyboard input
-        if (keys['arrowleft'] || keys['a']) { this.x -= effectiveSpeed * dt; moved = true; }
-        if (keys['arrowright'] || keys['d']) { this.x += effectiveSpeed * dt; moved = true; }
-        if (keys['arrowup'] || keys['w']) { this.y -= effectiveSpeed * dt; moved = true; }
-        if (keys['arrowdown'] || keys['s']) { this.y += effectiveSpeed * dt; moved = true; }
+        if (keys['shift']) {
+            turbo = 1.5; // Turbo mode
+        }
+        if (keys['arrowleft'] || keys['q']) { this.x -= turbo * effectiveSpeed * dt; moved = true; }
+        if (keys['arrowright'] || keys['d']) { this.x += turbo * effectiveSpeed * dt; moved = true; }
+        if (keys['arrowup'] || keys['z']) { this.y -= turbo * effectiveSpeed * dt; moved = true; }
+        if (keys['arrowdown'] || keys['s']) { this.y += turbo * effectiveSpeed * dt; moved = true; }
 
         // Controller input
         if (controllerInput) {
-            if (controllerInput.left) { this.x -= effectiveSpeed * dt; moved = true; }
-            if (controllerInput.right) { this.x += effectiveSpeed * dt; moved = true; }
-            if (controllerInput.up) { this.y -= effectiveSpeed * dt; moved = true; }
-            if (controllerInput.down) { this.y += effectiveSpeed * dt; moved = true; }
+            if (controllerInput.turbo) {
+                turbo = 1.5; // Turbo mode
+            }
+            if (controllerInput.left) { this.x -= turbo * effectiveSpeed * dt; moved = true; }
+            if (controllerInput.right) { this.x += turbo * effectiveSpeed * dt; moved = true; }
+            if (controllerInput.up) { this.y -= turbo * effectiveSpeed * dt; moved = true; }
+            if (controllerInput.down) { this.y += turbo * effectiveSpeed * dt; moved = true; }
         }
 
         if (moved) this.hooks.trigger('onMove', this);
