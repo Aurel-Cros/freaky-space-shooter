@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "clean": "rmdir /s /q dist",
+    "dev": "tsc --watch",
+    "serve": "npx http-server -p 8080"
+  },
+  "dependencies": {
+    "tsx": "^4.19.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
