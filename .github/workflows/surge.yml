@@ -23,4 +23,4 @@ jobs:
         run: npm install --global surge
 
       - name: Deploy to Surge
-        run: surge ./dist ${{ vars.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./ ${{ vars.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
